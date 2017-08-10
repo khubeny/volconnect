@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src = "finalvolunteer.js"></script>
+<!-- <script type="text/javascript" src = "setupconnect.js"></script> -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">   <!--just added -->
+
+
+  <link rel="stylesheet" href="finalvolunteer.css"></link>
+<link rel="stylesheet" href="finallogin.css"></link>
+<title> I Volunteer As Tribute </title>
+</head>
+<body onload="initialize();">
+
+<!-- <div class="background"></div> --> <!--You don't really need this line..? -->
+
+<div id = "icon-bar" onclick = "closeaddevent()" class="icon-bar">
+
+<!-- Search bar input -->
+  <form>
+      <input type="text" class="search" placeholder="Type to search for an event">
+ </form>
+<!-- Written words on icon bar: "Add an event" -->
+    <div class="add-e">
+      <p>Add an event</p>
+    </div>
+
+    <div class="loginbutton">
+      <img src="signUp.png" alt="Sign up" style="width: 35px;height: 35px; padding-right: 175px; margin-top: 10px;"></img>
+    </div>
+
+<!--Keep in just login button?? Sorta redundant... :/ -->
+    <div class="loginbutton">
+      <img src="signIn.png" alt="Sign In" style="width: 35px;height: 35px; padding-right: 100px; margin-top: 10px;"></img>
+    </div>
+
+<div class="loginbutton">
+      <a href="aboutus.html" style="padding-right: 250px;" >
+      <img src="aboutUs.png" alt="About us" style="width: 35px;height: 35px; margin-top: 10px;"></img>
+    </a>
+    </div>
+
+
+   <!-- login button in icon bar -->
+    <div class="loginbutton">
+      <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+    </div>
+</div>
+
+<!-- add login popup -->
+<div id="id01" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <button type="submit">Login</button>
+      <!-- make type button to make regular button -->
+      <button class="signupbutton" type="button" onclick="signUpScreen()">Sign Up</button>
+      <input type="checkbox" checked="checked"> Remember me
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<!-- added sign up pop up -->
+<div id="su" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label><b>Name</b></label>
+      <input type="text" placeholder="Enter Your Name" name="name" required>
+
+      <label><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label><b>Email</b></label>
+      <input type="email" placeholder="Enter Your Email" name="email" required>
+
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Confirm Password" name="psw2" required>
+
+      <button type="submit">Finish</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+<!-- end of my added code -->
+
+
+<!-- Add event image and functions of that "button" -->
+<div id="plus" class="add-e-icon">
+  <img src="addeventicon.png" onclick="addevent()"
+  style="width:30px;height:30px;padding-left:5px;padding:5px"></img>
+</div>
+
+<div id="dropdown" class="dropdown">
+
+  <h3 style="text-align:center;color:#696969">Create an event</h3>
+
+<!-- Note to self: if the person inserts data and leaves the create event dropdown, the info is still there when the dropdown is opened once again
+Make sure to delete all written information each time the event dropdown is pressed or after the person submits! -->
+
+<!-- Fill event's name -->
+    <input id="name" type="text" class="info" placeholder="Event Name" style= "margin-top: 10px;
+      margin-bottom: 10px;">
+
+  <!-- date picker doesn't work on safari idk if i have an old version tho -->
+    <label class="create"><b>Event Time and Date Start</b></label>
+    <input id="startdatetime" type="datetime-local" class="info" style="margin-top: 10px;
+      margin-bottom: 10px;">
+<!-- when event ends -->
+    <label class="create"><b>Event Time and Date End</b></label>
+    <input id="enddatetime" type="datetime-local" class="info"  style="margin-top: 10px;
+      margin-bottom: 10px;">
+
+<label class="create"><b> Address </b></label>
+<input id="address" type="text" class="location" placeholder="Address">
+
+  <!-- Fill out event coordinator's contact information -->
+ <label class="create"><b>Contact Info</b></label>
+    <input id="contact" type="text" class="contact" placeholder="Contact Information">
+
+<!-- Brief description of the event being created -->
+  <label class="create"><b>Event Description</b></label>
+
+  <form>
+    <textarea id="description" type="text" class="description" placeholder="Event Description" maxlength="350" style="margin-top: 10px;
+      margin-bottom: 10px;"></textarea>
+  </form>
+
+<!-- Used to write certain tags that a volunteer can search for -->
+  <label class="create" style="text-align: center;"><b>Event Tags</b></label>
+  <form>
+    <textarea id="tags" type="text" class="description" placeholder="Enter hashtags for users to find your event. (ex. #animals)" style="margin-top: 10px;
+      margin-bottom: 10px;"></textarea>
+  </form>
+
+<!--submit button later code it for multiple events -->
+<input id= "submit" type="button" onclick="process();" style="display: block;margin: 0 auto" value="Submit">
+
+</div>
+
+<div id="googleMap" class="googleMap" style="width:100%;height:90vh;overflow:auto"></div>
+
+<script type="text/javascript" src = "finalvolunteer.js"></script>
+<!-- <script type="text/javascript" src = "setupconnect.js"></script> -->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC08DCA_37I1AeSxnIi3_jXvxxqWYWHHVw&callback=myMap"></script> -->
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC08DCA_37I1AeSxnIi3_jXvxxqWYWHHVw&callback=initMap">
+</script>
+
+</body>
+
+</html>
